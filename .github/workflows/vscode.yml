@@ -1,0 +1,30 @@
+name: BUILD DOCKER
+
+on:  
+   push:
+    branches:
+      - mains
+
+jobs:
+  publish-image:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Log in to Red Hat Registry
+      uses: redhat-actions/podman-login@v1
+      with:
+        registry: ghcr.io
+        username: murunwas
+        password: ${{ secrets.MYTOKEN }}
+    - run: sudo podman run --rm --privileged multiarch/qemu-user-static --reset -p yes
+    - name: Buildah Action
+      uses: redhat-actions/buildah-build@v2
+      with:
+        image: ghcr.io/murunwas/vscode
+        tags: latest ${{ github.sha }}
+        dockerfiles: |
+          ./Dockerfile
+        build-args: |
+          some_arg=some_value
+    - run: podman push ghcr.io/murunwas/vscode:latest
