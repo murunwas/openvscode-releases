@@ -7,7 +7,7 @@ FROM gitpod/openvscode-server:latest
 # RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 # Install base dependencies
-RUN apt-get update && apt-get install -y -q --no-install-recommends \
+RUN sudo apt-get update && apt-get install -y -q --no-install-recommends \
         apt-transport-https \
         build-essential \
         ca-certificates \
@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y -q --no-install-recommends \
         git \
         libssl-dev \
         wget \
-    && rm -rf /var/lib/apt/lists/*
+    && sudo rm -rf /var/lib/apt/lists/*
 
 ENV NVM_DIR /usr/local/nvm # or ~/.nvm , depending
 ENV NODE_VERSION 16.13.2
