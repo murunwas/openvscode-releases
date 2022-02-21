@@ -22,7 +22,7 @@ ENV NVM_DIR /usr/local/nvm # or ~/.nvm , depending
 ENV NODE_VERSION 16.13.2
 
 # Install nvm with node and npm
-RUN sudo curl https://raw.githubusercontent.com/creationix/nvm/v0.20.0/install.sh | bash \
+RUN sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash \
     && . $NVM_DIR/nvm.sh \
     && nvm install $NODE_VERSION \
     && nvm alias default $NODE_VERSION \
