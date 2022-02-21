@@ -3,7 +3,7 @@ name: BUILD DOCKER
 on:  
    push:
     branches:
-      - mains
+      - main
 
 jobs:
   publish-image:
