@@ -1,6 +1,6 @@
 FROM gitpod/openvscode-server:latest
 
-USER 1001 # to get permissions to install packages and such
+USER 1000 # to get permissions to install packages and such
 # Replace shell with bash so we can source files
 # RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
