@@ -8,15 +8,15 @@ USER root # to get permissions to install packages and such
 # RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 # Install base dependencies
-RUN  apt update && apt install -y -q --no-install-recommends \
-        apt-transport-https \
-        build-essential \
-        ca-certificates \
-        curl \
-        git \
-        libssl-dev \
-        wget \
-    &&  rm -rf /var/lib/apt/lists/*
+# RUN  apt update && apt install -y -q --no-install-recommends \
+#         apt-transport-https \
+#         build-essential \
+#         ca-certificates \
+#         curl \
+#         git \
+#         libssl-dev \
+#         wget \
+#     &&  rm -rf /var/lib/apt/lists/*
 
 ENV NVM_DIR /usr/local/nvm # or ~/.nvm , depending
 ENV NODE_VERSION 16.13.2
