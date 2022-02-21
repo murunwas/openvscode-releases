@@ -1,6 +1,6 @@
 FROM gitpod/openvscode-server:latest
 
-USER root # to get permissions to install packages and such
+USER 1001 # to get permissions to install packages and such
 # Replace shell with bash so we can source files
 # RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
@@ -22,7 +22,7 @@ ENV NVM_DIR /usr/local/nvm # or ~/.nvm , depending
 ENV NODE_VERSION 16.13.2
 
 # Install nvm with node and npm
-RUN sudo curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash \
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash \
     && . $NVM_DIR/nvm.sh \
     && nvm install $NODE_VERSION \
     && nvm alias default $NODE_VERSION \
