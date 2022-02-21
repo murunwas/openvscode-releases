@@ -60,5 +60,8 @@ ENV LANG=C.UTF-8 \
 
 # Default exposed port if none is specified
 EXPOSE 3000
+EXPOSE 3001
+EXPOSE 3002
+EXPOSE 3003
 
 ENTRYPOINT [ "/bin/sh", "-c", "exec ${OPENVSCODE_SERVER_ROOT}/bin/openvscode-server --host 0.0.0.0 --without-connection-token \"${@}\"", "--" ]
