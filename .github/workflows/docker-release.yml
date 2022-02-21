@@ -16,7 +16,7 @@ on:
       DOCKERHUB_TOKEN:
         required: true
       SLACK_WEBHOOK:
-        required: true
+        required: false
 
 jobs:
   docker-release:
@@ -46,7 +46,7 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: |
-            gitpod/openvscode-server
+            murunwas/openvscode-server
           tags: |
             type=semver,pattern={{version}},value=v${{ inputs.version }},enable=${{ inputs.stable == true }}
             type=raw,value=insiders,enable=${{ inputs.stable == false }}
@@ -55,6 +55,7 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
+          registry: ghcr.io
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       
@@ -71,9 +72,9 @@ jobs:
             RELEASE_TAG=${{ env.RELEASE_TAG }}
           tags: ${{ steps.meta.outputs.tags }}
 
-      - name: Slack Notification
-        if: always()
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_COLOR: ${{ job.status }}
+#       - name: Slack Notification
+#         if: always()
+#         uses: rtCamp/action-slack-notify@v2
+#         env:
+#           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+#           SLACK_COLOR: ${{ job.status }}
