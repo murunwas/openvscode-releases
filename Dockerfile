@@ -1,5 +1,6 @@
 FROM gitpod/openvscode-server:latest
 
+USER root # to get permissions to install packages and such
 # Replace shell with bash so we can source files
 # RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
@@ -32,3 +33,4 @@ ENV PATH      $NVM_DIR/v$NODE_VERSION/bin:$PATH
 EXPOSE 3001
 EXPOSE 3002
 EXPOSE 3003
+USER openvscode-server
